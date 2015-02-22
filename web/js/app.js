@@ -18,8 +18,8 @@ helpCatsApp.config(['$routeProvider',
 ]);
 
 helpCatsApp.factory('Cat', ['$resource',
-	function($resource){
-		return $resource('/api/cats.json');
+	function($resource) {
+		return $resource('/api/cats.json/:catId');
 	}
 ]);
 
