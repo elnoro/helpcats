@@ -1,4 +1,23 @@
-var helpCatsApp = angular.module('helpCatsApp', []);
+var helpCatsApp = angular.module('helpCatsApp', ['ngRoute']);
+
+
+helpCatsApp.config(['$routeProvider',
+	function($routeProvider) {
+		$routeProvider.
+			when('/cats', {
+				templateUrl: 'partials/index.html',
+				controller: 'catsCtrl'
+			}).
+			when('/cats/:catId', {
+				templateUrl: 'partials/cat.html',
+				controller: 'catDetailCtrl'
+			}).
+				otherwise({
+				redirectTo: '/cats'
+			});
+	}
+]);
+
 
 helpCatsApp.controller('catsCtrl', function ($scope) {
 	$scope.cats = [
@@ -62,3 +81,9 @@ helpCatsApp.controller('catsCtrl', function ($scope) {
 
 	$scope.catChunks = splitArrayIntoChunks($scope.cats, 3);
 });
+
+helpCatsApp.controller('catDetailCtrl', ['$scope', '$routeParams',
+	function($scope, $routeParams) {
+		$scope.catId = $routeParams.catId;
+	}
+]);
