@@ -1,4 +1,6 @@
 <?php 
+namespace app\models;
+
 class CatSearchItem extends \yii\elasticsearch\ActiveRecord
 {
     public function attributes()
@@ -8,6 +10,6 @@ class CatSearchItem extends \yii\elasticsearch\ActiveRecord
 
     public function getCat()
     {
-    	return Cat::findOne($this->id)
+    	return Cat::findOne($this->id);
     }
 }

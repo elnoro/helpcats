@@ -26,19 +26,21 @@ class Cat extends ActiveRecord
 		return [['source', 'unique']];
 	}
 
-	public function afterSave()
+	public function afterSave($insert, $changedAttributes)
 	{
-		if (is_null($item = CatSearchItem::get($this->id))) {
+		if ($insert) {
 			$item = new CatSearchItem;
 			$item->id = $this->id;
 		} 
 		$item->name = $this->name;
 		$item->description = $this->description;
 		$item->save();
+		parent::afterSave($insert, $changedAttributes);
 	}
 
 	public function afterDelete()
 	{
 		CatSearchItem::get($this->id)->delete();
+		return parent::afterDelete();
 	}
 }
