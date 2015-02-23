@@ -20,4 +20,9 @@ class Cat extends ActiveRecord
 	{
 		return $this->hasMany(CatImage::className(), ['cat_id' => 'id']);
 	}
+
+	public function rules()
+	{
+		return [['source', 'unique']];
+	}
 }
