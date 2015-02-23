@@ -18,7 +18,8 @@
         "yiisoft/yii2": "*",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "serhatozles/yii2-simplehtmldom": "dev-master"
+        "serhatozles/yii2-simplehtmldom": "dev-master",
+        "yiisoft/yii2-elasticsearch": "~2.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
