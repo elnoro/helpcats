@@ -38,6 +38,7 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+        'elasticsearch' => require(__DIR__ . '/elasticsearch.php'),
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,

@@ -26,6 +26,7 @@ return [
             ],
         ],
         'db' => $db,
+        'elasticsearch' => require(__DIR__ . '/elasticsearch.php'),
     ],
     'params' => $params,
 ];
