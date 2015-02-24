@@ -52,6 +52,7 @@ helpCatsApp.controller('searchCtrl',
 		$scope.search = function () {
 			$http.post('/search', {query: $scope.query}).
 				success(function (data) {
+					$scope.errorMessage = '';
 					$scope.cats = data;
 				})
 				.error(function (data, status) {
