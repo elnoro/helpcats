@@ -46,11 +46,13 @@ $config = [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'cat'],
             ],
         ],
-        // 'request' => [
-        //     'parsers' => [
-        //         'application/json' => 'yii\web\JsonParser',
-        //     ]
-        // ],
+        'request' => [
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
+            'enableCookieValidation' => false,
+            'enableCsrfValidation' => false,
+        ],
     ],
     'params' => $params,
 ];
