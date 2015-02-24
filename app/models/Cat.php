@@ -32,6 +32,7 @@ class Cat extends ActiveRecord
 			$item = new CatSearchItem;
 			$item->id = $this->id;
 		} 
+		else $item = CatSearchItem::get($this->id);
 		$item->name = $this->name;
 		$item->description = $this->description;
 		$item->save();
