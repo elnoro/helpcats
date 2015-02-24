@@ -11,11 +11,11 @@ class ParserController extends Controller
 	    	foreach ($this->getLinksToAds() as $link) {
 	    		$this->parseAd($link);
 	    	}
-	    	$this->ansiFormat('Parsing finished', Console::FG_GREEN);
+	    	echo $this->ansiFormat('Parsing finished', Console::FG_GREEN) . PHP_EOL;
 	    	return self::EXIT_CODE_NORMAL;
     	}
     	catch (Exception $e) {
-	    	$this->ansiFormat("Problem: {$e->getMessage()}", Console::FG_RED);
+	    	echo $this->ansiFormat("Problem: {$e->getMessage()}", Console::FG_RED) . PHP_EOL;
 	    	return self::EXIT_CODE_ERROR;
     	}
     }
