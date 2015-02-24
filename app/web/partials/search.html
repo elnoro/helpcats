@@ -1,0 +1,25 @@
+<div ng-controller="searchCtrl">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Что-нибудь про котика..." ng-model="query">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" ng-click="search()">Бороться и искать, найти и перепрятать!</button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <p class="bg-danger">{{errorMessage}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <p ng-if="!cats.length">Ничего не найдено</p>
+    </div>
+  </div>
+  <div class="row" ng-repeat="cat in cats track by $index">
+    <div class="col-md-6"><a href="#/cats/{{cat.id}}">{{cat.name}}</a></div>
+  </div>
+</div>

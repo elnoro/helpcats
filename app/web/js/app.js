@@ -11,6 +11,10 @@ helpCatsApp.config(['$routeProvider',
 				templateUrl: 'partials/cat.html',
 				controller: 'catDetailCtrl'
 			}).
+			when('/search', {
+				templateUrl: 'partials/search.html',
+				controller: 'searchCtrl'
+			}).
 				otherwise({
 				redirectTo: '/cats'
 			});
@@ -42,4 +46,20 @@ helpCatsApp.controller('catDetailCtrl', ['$scope', '$routeParams', 'Cat',
 		$scope.cat = Cat.get({catId: catId});
 	}
 ]);
+
+helpCatsApp.controller('searchCtrl',
+	function($scope, $http) {
+		$scope.search = function () {
+			$http.post('/search', {query: $scope.query}).
+				success(function (data) {
+					$scope.cats = data;
+				})
+				.error(function (data, status) {
+					$scope.errorMessage = "Error " + status;
+				});
+		}
+		$scope.cats = [];
+		$scope.errorMessage = '';
+	}
+);
 
