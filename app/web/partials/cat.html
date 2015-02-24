@@ -1,0 +1,13 @@
+<article ng-controller="catDetailCtrl">
+	<header>{{cat.name}}</header>
+	<section>
+		<p ng-repeat="catImg in cat.images">
+			<img ng-src="{{catImg}}" height="200px">
+		</p>
+	</section>
+	<section>
+		{{cat.description}}
+		<strong>{{cat.contacts}}</strong>
+		<p>Источник <a href="{{cat.source}}">{{cat.source}}</a></p>
+	</section>
+</article>

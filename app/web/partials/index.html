@@ -1,0 +1,12 @@
+<div ng-controller="catsCtrl">
+	<div class="row" ng-repeat="catChunk in catChunks">
+	    <div class="col-lg-4" ng-repeat="cat in catChunk">
+	        <h2>{{cat.name}}</h2>
+
+	        <img ng-src="{{cat.images[0]}}" height="100px"/> 
+	        <p>{{cat.description | limitTo: 200 }}</p>
+
+	        <p><a class="btn btn-default" href="#/cats/{{cat.id}}">Дальше</a></p>
+	    </div>
+	</div>
+</div>

@@ -19,7 +19,7 @@ helpCatsApp.config(['$routeProvider',
 
 helpCatsApp.factory('Cat', ['$resource',
 	function($resource) {
-		return $resource('/api/cats.json/:catId');
+		return $resource('/cats/:catId');
 	}
 ]);
 
