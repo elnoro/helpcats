@@ -2,12 +2,21 @@
 namespace app\commands;
 
 use yii\console\Controller;
+use yii\helpers\Console;
 
 class ParserController extends Controller
 {
-    public function actionStart() {
-    	foreach ($this->getLinksToAds() as $link) {
-    		$this->parseAd($link);
+    public function actionRun() {
+    	try {
+	    	foreach ($this->getLinksToAds() as $link) {
+	    		$this->parseAd($link);
+	    	}
+	    	$this->ansiFormat('Parsing finished', Console::FG_GREEN);
+	    	return self::EXIT_CODE_NORMAL;
+    	}
+    	catch (Exception $e) {
+	    	$this->ansiFormat("Problem: {$e->getMessage()}", Console::FG_RED);
+	    	return self::EXIT_CODE_ERROR;
     	}
     }
 
@@ -46,7 +55,8 @@ class ParserController extends Controller
     	$cat->source = $url;
     	if ($cat->save()) {
     		foreach ($p->find('a.gallery-link') as $a) {
-    			$this->addImage($cat, $a->href);
+    			if (!$a->hasAttribute('data-fallback')) // игнорируем дубликаты с большим разрешением
+	    			$this->addImage($cat, $a->href);
     		}
     	}
     }
