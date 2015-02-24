@@ -21,6 +21,10 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular-route.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular-resource.min.js",
+        "js/app.js",
     ];
     public $depends = [
         'yii\web\YiiAsset',
