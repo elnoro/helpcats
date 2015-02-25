@@ -3,6 +3,8 @@ namespace app\commands;
 
 use yii\console\Controller;
 use yii\helpers\Console;
+use app\models\CatSearchItem;
+use app\models\Cat;
 
 class ParserController extends Controller
 {
@@ -18,6 +20,18 @@ class ParserController extends Controller
 	    	echo $this->ansiFormat("Problem: {$e->getMessage()}", Console::FG_RED) . PHP_EOL;
 	    	return self::EXIT_CODE_ERROR;
     	}
+    }
+
+    public function actionIndex()
+    {
+		\Yii::$app->elasticsearch->createCommand()->deleteIndexes();
+		foreach (\app\models\Cat::find()->all() as $cat) {
+			$item              = new \app\models\CatSearchItem;
+			$item->primaryKey  = $cat->id;
+			$item->name        = $cat->name;
+			$item->description = $cat->description;
+			$item->save();
+		}
     }
 
 	protected function getBaseUrl()

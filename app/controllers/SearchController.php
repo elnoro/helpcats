@@ -15,7 +15,10 @@ class SearchController extends Controller
             ]
         ]);
         return array_map(function ($e) {
-            return $e->getAttributes(['id', 'name']);
+            return [
+                'id'   => $e->primaryKey,
+                'name' => $e->name,
+            ];
         }, $query->all());
     }
 }
