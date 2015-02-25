@@ -23,6 +23,9 @@ class Cat extends ActiveRecord
 
 	public function rules()
 	{
-		return [['source', 'unique']];
+		return [
+			[['name', 'description', 'contacts'], 'required'],
+			['source', 'unique']
+		];
 	}
 }
