@@ -24,7 +24,7 @@ class ParserController extends Controller
 
     public function actionIndex()
     {
-		\Yii::$app->elasticsearch->createCommand()->deleteIndexes();
+		\Yii::$app->elasticsearch->createCommand()->deleteAllIndexes();
 		foreach (\app\models\Cat::find()->all() as $cat) {
 			$item              = new \app\models\CatSearchItem;
 			$item->primaryKey  = $cat->id;
