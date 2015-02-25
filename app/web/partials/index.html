@@ -9,4 +9,13 @@
 	        <p><a class="btn btn-default" href="#/cats/{{cat.id}}">Дальше</a></p>
 	    </div>
 	</div>
+	<div class="row">
+	<nav>
+	  <ul class="pagination">
+	   <li ng-repeat="pageId in pages">
+		<a href="#/cats/page/{{pageId}}">{{pageId}}</a>
+	   </li>
+	  </ul>
+	</nav>
+	</div>
 </div>

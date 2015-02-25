@@ -7,6 +7,10 @@ helpCatsApp.config(['$routeProvider',
 				templateUrl: 'partials/index.html',
 				controller: 'catsCtrl'
 			}).
+			when('/cats/page/:pageId', {
+				templateUrl: 'partials/index.html',
+				controller: 'catsCtrl'
+			}).
 			when('/cats/:catId', {
 				templateUrl: 'partials/cat.html',
 				controller: 'catDetailCtrl'
@@ -27,8 +31,12 @@ helpCatsApp.factory('Cat', ['$resource',
 	}
 ]);
 
-helpCatsApp.controller('catsCtrl', ['$scope', 'Cat', function ($scope, Cat) {
-	Cat.query({}, function (cats) {
+helpCatsApp.controller('catsCtrl', ['$scope', '$routeParams', 'Cat', function ($scope, $routeParams, Cat) {
+	$scope.pagination = {};
+	var pageId = ('pageId' in $routeParams) ? $routeParams.pageId : 1;
+	Cat.query({page: pageId}, function (cats, headers) {
+		var count = headers('X-Pagination-Page-Count');
+		$scope.pages = getPages(parseInt(count, 10));
 		$scope.catChunks = splitArrayIntoChunks(cats, 3);
 	});
 	var splitArrayIntoChunks = function (originalArray, chunkSize) {
@@ -37,6 +45,11 @@ helpCatsApp.controller('catsCtrl', ['$scope', 'Cat', function ($scope, Cat) {
 		    chunks.push(originalArray.slice(i, i + chunkSize));
 		};
 		return chunks;
+	};
+	var getPages = function (count) {
+		return Array.apply(
+			null, Array(count)).map(function (_, i) {return i+1;}
+		);
 	};
 }]);
 
